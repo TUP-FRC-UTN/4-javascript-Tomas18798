@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <title>Clase 4 javascr5ipt</title>
+  </head>
+  <body>
+    <h1 id="h1">Bienvenidos a Javascript</h1>
+    <div class="container">
+      <label for="txtDate">Año:</label><br>
+      <input type="text" name="txtDate" id="txtDate"> 
+      <button id="btnCargarFecha" type="button" onclick="alert('hola desde button')">Cargar Fecha </button>     
+    </div>
+    <script>
+      
+        // Cargar la fecha con el boton
+        //document.addEventListener('DOMContentLoaded' , inicializarBoton);
+        document.addEventListener('DOMContentLoaded' , inicializarTitulo);
+        
+        function inicializarBoton(){
+          document.getElementById('btnCargarFecha').addEventListener('click',inicializarFecha);
+        }
+
+        function inicializarFecha(){
+          var year = new Date().getFullYear();
+          document.getElementById('txtDate').value = year;
+        }
+        // ocultar elemento con click
+        function inicializarTitulo(){
+          document.getElementById('h1').addEventListener('click',ocultarElemento);
+        }
+        function ocultarElemento(){
+          document.getElementById('h1').style.display='none';
+        }
+
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <title>Clase 4 javascr5ipt</title>
+  </head>
+  <body>
+    <h1 id="h1">Bienvenidos a Javascript</h1>
+    <div class="container">
+      <label for="txtDate">Año:</label><br>
+      <input type="text" name="txtDate" id="txtDate"> 
+      <button id="btnCargarFecha" type="button" onclick="alert('hola desde button')">Cargar Fecha </button>     
+    </div>
+
+    <script>
+      //variables --> no utilizan tipo de dato
+      var nombre = 'Tomas';
+      nombre = 10;
+      console.log(nombre);
+      // tipo de datos primitivos --> string,numeros,bool
+      //               especiales --> 
+
+      //Arrays --> se inicializan con []
+      var array = ['Tomas','Ezequiel','Roman'];
+      var array2 = new Array(3).fill(0); //inidicamos la cantidad de elementos que va a tener, con fill cargamos con 0 en todos sus lugares
+      //alert('Hola este es el elemento 1 del array: ' + array[1]);
+
+      console.log(array);
+      console.log(array2);
+
+      for(var i = 0;i < array.length ; i++){
+        alert('Hola este es el elemento '+i+' del array: ' + array[i]);
+      }
+      // con for of iteramos elementos de manera mas practica
+/*       for(var item of array){
+        console.log('Hola bienvenido a la clase '+item);
+      } */
+
+      var array3 = ['Tomas',24,true];
+
+      for(var j = 0;j < array3.length ; j++){
+        console.log('Hola este es el elemento '+j+' del array: ' + array3[j]);
+      }
+
+      
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <title>Clase 4 javascr5ipt</title>
+  </head>
+  <body>
+    <h1 id="h1">Bienvenidos a Javascript</h1>
+    <div class="container">
+      <h1>Registro de persona</h1>
+    <form>
+      Nombre: <br>
+      <input type="text" name="nombre" id="txtNombre"><br>
+      Apellido: <br>
+      <input type="text" name="Apellido" id="txtApellido"><br>
+      <br>
+
+      Sexo: <br>
+      <input type="radio" name="genero" value="masculino">Masculino <br>
+      <input type="radio" name="genero" value="femenino">Femenino <br>
+      <input type="radio" name="genero" value="otro">Otro
+
+
+      <br>
+
+      <br>
+      Deporte: <br>
+      <select name="deporte">
+        <option value="tenis">Tenis</option>
+        <option value="futbol">Futbol</option>
+        <option value="rugby">Rugby</option>
+        <option value="padel">Padel</option>
+      </select>
+
+      <br>
+
+      <br>
+      Descripcion de usuario:<br>
+      <textarea name="descripcion" rows="10" cols="60" id="txtDescripcion"></textarea>
+      <br>
+
+      <br>
+      <button type="button" onclick="validarForm();">Validar</button><br><br>
+      <button type="button" onclick="guardarDatos();">Grabar</button>
+      
+    </div>
+
+    <script>
+
+      // 1 == '1' = true
+      // 1 === '1' = false
+      // validaciones
+      function validarForm(){
+        var txtNombre = document.getElementById('txtNombre');
+        var txtApellido = document.getElementById('txtApellido');
+        var txtDescripcion = document.getElementById('txtDescripcion');
+        var radioButtonGenero = document.getElementsByName('genero');
+
+        if(txtNombre.value === ''){ // comparacion estricta, compara el valor y tipo de dato
+          alert('El campo Nombre es requerido');
+          return false; // para que no continue la ejecucion del codigo
+        }
+
+        if(txtApellido.value === ''){
+          alert('El campo Apellido es requerido');
+          return false;
+        }
+
+        if(txtDescripcion.value === ''){
+          alert('El campo Descripcion es requerido');
+          return false;
+        }else if(txtDescripcion.value.lenght > 100){
+          alert('El campo descripcion tiene un limite de 100 caracteres');
+          return false;
+        }
+
+        var banderaIN = false;
+        for(var i = 0; i < radioButtonGenero.length; i++){
+          if(radioButtonGenero[i].checked){
+            var banderaIN = true;
+            break;
+          }
+        }
+        if(banderaIN == false){
+          alert('Debe seleccion el genero');
+          return false;
+        }
+        return true;
+      }
+
+      function guardarDatos(){
+        if(validarForm()){
+          alert('Enviando informacion al servidor...');
+        }else{
+          alert('Error de validacion')
+        }
+      }
+    </script>
+
+  </body>
+</html>
