@@ -33,8 +33,10 @@
         <div class="container text-white">
             <h1 class="display-3">FORMULARIO CON VALIDACIONES</h1>
             <p class="lead">Actividad clase 4 - 06/04 <br> Tomas Gutierrez, Legajo: <b>112952</b> </p>
+            <h2 id="mensaje" class="display-5"></h2>
         </div>
     </div>
+    
     <hr>
 <!--     <form action="enviar.php" method="post" id="form">
         <label for="correo">Correo</label>
@@ -66,36 +68,40 @@
         <form id="form">
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="inputEmail4">Correo Electronico</label>
-                    <input name="correo"   class="form-control" id="correo" placeholder="nombre@correo.com">
+                    <label id="txtCorreo" for="inputEmail4">Correo Electronico</label>
+                    <input name="correo"   class="form-control" id="correo" placeholder="nombre@correo.com" onkeyup="dinamicText()">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="inputPassword4">Contraseña</label>
-                    <input name="contraseña" type="password" class="form-control" id="contraseña" placeholder="Numero y letras entre 5 y 10 digitos">
+                    <label id="txtContraseña" for="inputPassword4">Contraseña</label>
+                    <input  name="contraseña" type="password" class="form-control" id="contraseña" placeholder="Numero y letras entre 5 y 10 digitos" onkeyup="countChars(this);">
+                    <!-- <input type="text" name="" id="" > -->
+                   <!--  <textarea name="mesage"  onkeyup="countChars(this)"></textarea>
+                    <p id="contador">0 characters</p> -->
+                    <!-- <p id="charNum">0 characters</p> -->
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputAddress">Direccion</label>
-                <input name="direccion" type="text" class="form-control" id="direccion" placeholder="Inserte su direccion">
+                <label id="txtDireccion" for="inputAddress">Direccion</label>
+                <input name="direccion" type="text" class="form-control" id="direccion" placeholder="Inserte su direccion" onkeyup="dinamicText()">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="inputCity">Ciudad</label>
-                    <input name="ciudad" type="text" class="form-control" id="ciudad">
+                    <label id="txtCiudad" for="inputCity">Ciudad</label>
+                    <input name="ciudad" type="text" class="form-control" id="ciudad" onkeyup="dinamicText()">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="inputPais">Pais</label>
-                    <input name="pais" type="text" class="form-control" id="pais">
+                    <label id="txtPais" for="inputPais">Pais</label>
+                    <input name="pais" type="text" class="form-control" id="pais" onkeyup="dinamicText()">
                 </div>
                 <div class="form-group col-md-2">
-                    <label for="inputZip">Codigo Postal</label>
-                    <input name="cp" type="text" class="form-control" id="cp">
+                    <label id="txtCP" for="inputZip">Codigo Postal</label>
+                    <input name="cp" type="text" class="form-control" id="cp" onkeyup="dinamicText()">
                 </div>
             </div>
             <div class="form-group">
                 <div class="form-check">
-                    <input name="check" class="form-check-input" type="checkbox" id="check">
-                    <label class="form-check-label" for="gridCheck">
+                    <input name="check" class="form-check-input" type="checkbox" id="check" onkeyup="dinamicText()">
+                    <label id="txtTerminos" class="form-check-label" for="gridCheck">
                         Acepto los terminos
                     </label>
                 </div>
@@ -106,7 +112,161 @@
     </div>
     <hr>
 <!-- <script src="/js/validaciones.js"></script> -->
-<script src="/js/validaciones2.js"></script>
+<script>
+    var txtCorreo = document.getElementById('correo');
+    var txtPass = document.getElementById('contraseña');
+    var txtDireccion = document.getElementById('direccion');
+    var txtCiudad = document.getElementById('ciudad');
+    var txtPais = document.getElementById('pais');
+    var txtCP = document.getElementById('cp');
+    var check = document.getElementById('check');
+
+    function verificar(){
+        
+        if(txtCorreo.value === ''){
+            
+            return false;
+        }else{
+            let exp = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i ;
+            if(exp.test(txtCorreo.value) == false){
+                
+                alert("Verifique el formato del correo electronico (nombre@direccion.xxx)")
+                return false;
+            }
+        }
+
+        if(txtPass.value === ''){
+            alert('El campo Contraseña es requerido');
+            return false;
+        }else{
+            let exp = /^[A-Za-z0-9!?-]{5,10}$/ ;
+            if(exp.test(txtPass.value) == false){
+                alert("Verifique el formato de la contraseña (letras y numeros de 8 digitos)")
+                return false;
+            }
+        }
+
+        if(txtDireccion.value === ''){
+            alert('El campo Direccion es requerido');
+            return false;
+        }else{
+            let exp = /^[a-zA-Z0-9\s]{5,100}$/;
+            //let exp =  /^[a-zA-Z0-9]{5,100}$/ ;
+            if(exp.test(txtDireccion.value) == false){
+                alert("Verifique el formato de la Direccion")
+                return false;
+            }
+        }
+
+        if(txtCiudad.value === ''){
+            alert('El campo Ciudad es requerido');
+            return false;
+        }else{
+            let exp =  /^[a-zA-Z\s]{5,25}$/ ;
+            if(exp.test(txtCiudad.value) == false){
+                alert("Verifique el formato de la Ciudad")
+                return false;
+            }
+        }
+
+        if(txtPais.value === ''){
+            alert('El campo Pais es requerido');
+            return false;
+        }else{
+            let exp =  /^[a-zA-Z\s]{5,25}$/ ;
+            if(exp.test(txtPais.value) == false){
+                alert("Verifique el formato del Pais")
+                return false;
+            }
+
+        if(txtCP.value === ''){
+            alert('El campo Codigo Postal es requerido');
+            return false;
+        }else{
+            let exp =  /^[0-9]+$/ ;
+            if(exp.test(txtCP.value) == false){
+                alert("Verifique el formato del codigo postal")
+                return false;
+            }
+        }
+
+        if(check.checked == false){
+            alert('debe aceptar los terminos');
+            return false;
+        }
+        return true;
+    }
+
+    }
+
+    function validar(){
+        if(verificar() == true){
+            alert("Datos enviados correctamente")
+        }
+    }
+
+    function countChars(obj){
+        var maxLength = 10;
+        var strLength = obj.value.length;
+        var charRemain = (maxLength - strLength);
+        
+        if(charRemain < 0){
+            document.getElementById("txtContraseña").innerHTML = '<span style="color: red;">Contraseña --> Excediste el maximo de '+maxLength+' caracteres</span>';
+        }else{
+            document.getElementById("txtContraseña").innerHTML = "Contraseña --> "+charRemain+' caracteres disponibles';
+        }
+    }
+
+    function dinamicText(){
+        if(document.getElementById("txtCorreo")){
+            let exp = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i ;
+            if(exp.test(txtCorreo.value)==true){
+                document.getElementById("txtCorreo").innerHTML = '<span style="color: green;">Correo Electronico correcto</span>';
+            }else{
+                document.getElementById("txtCorreo").innerHTML = '<span style="color: red;">Correo Electronico incorrecto</span>';
+            }
+        }
+        if(document.getElementById("txtDireccion")){
+            let exp = /^[a-zA-Z0-9\s]{5,100}$/ ;
+            if(exp.test(txtDireccion.value)==true){
+                document.getElementById("txtDireccion").innerHTML = '<span style="color: green;">Direccion correcta</span>';
+            }else{
+                document.getElementById("txtDireccion").innerHTML = '<span style="color: red;">Direccion incorrecta</span>';
+            }
+        }
+         if(document.getElementById("txtCiudad")){
+            let exp = /^[a-zA-Z\s]{5,25}$/ ;
+            if(exp.test(txtCiudad.value)==true){
+                document.getElementById("txtCiudad").innerHTML = '<span style="color: green;">Ciudad correcta</span>';
+            }else{
+                document.getElementById("txtCiudad").innerHTML = '<span style="color: red;">Ciudad incorrecta</span>';
+            }
+        }
+        if(document.getElementById("txtPais")){
+            let exp = /^[a-zA-Z\s]{5,25}$/ ;
+            if(exp.test(txtPais.value)==true){
+                document.getElementById("txtPais").innerHTML = '<span style="color: green;">Pais correcto</span>';
+            }else{
+                document.getElementById("txtPais").innerHTML = '<span style="color: red;">Pais incorrecto</span>';
+            }
+        }
+        if(document.getElementById("txtCP")){
+            let exp = /^[0-9]+$/ ;
+            if(exp.test(txtCP.value)==true){
+                document.getElementById("txtCP").innerHTML = '<span style="color: green;">Codigo Postal correcto</span>';
+            }else{
+                document.getElementById("txtCP").innerHTML = '<span style="color: red;">Codigo Postal incorrecto</span>';
+            }
+        }
+        if(document.getElementById("txtTerminos")){
+            if(check.checked == true){
+                document.getElementById("txtTerminos").innerHTML = '<span style="color: green;">Acepto los terminos</span>';
+            }
+        }
+      
+        
+    }
+</script>
 <!-- <script >
 function validarInfo(){
     var expReg = {
